@@ -3,10 +3,14 @@ var express = require('express');
 var app = express();
 const { body, validationResult, } = require('express-validator')
 const multer = require('multer')
+var cors = require('cors')
 
 function resp(data = {}, msg = 'suc', code = 200, err = null) {
   return { data, msg, code, err }
 }
+
+app.use(cors())
+app.options('*', cors())
 
 app.post('/',
   multer().none(),
